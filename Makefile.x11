@@ -1,0 +1,24 @@
+# 
+# VERSION CHANGES
+#
+
+BV=$(shell (git rev-list HEAD --count))
+BD=$(shell (date))
+CFLAGS=-O -DBUILD_VER="$(BV)" -DBUILD_DATE=\""$(BD)"\" -DFAKE_SERIAL=$(FAKE_SERIAL)
+LIBS=
+CC=gcc
+GCC=g++
+
+OBJ=bside-adm20-x11
+
+default: $(OBJ)
+	@echo
+	@echo
+
+bside-adm20-x11: bside-adm20-x11.cpp
+	@echo Build Release $(BV)
+	@echo Build Date $(BD)
+	${GCC} ${CFLAGS} $(COMPONENTS) bside-adm20-x11.cpp ${OFILES} -o ${OBJ} -L/usr/X11R6/lib -lX11 
+
+clean:
+	del /s ${OBJ} ${WINOBJ}

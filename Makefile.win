@@ -1,0 +1,31 @@
+# 
+# VERSION CHANGES
+#
+
+BV=$(shell (git rev-list HEAD --count))
+BD=$(shell (date))
+CFLAGS=-O -DBUILD_VER="$(BV)" -DBUILD_DATE=\""$(BD)"\" -DFAKE_SERIAL=$(FAKE_SERIAL)
+LIBS=
+WINLIBS=-lgdi32 -lcomdlg32 -lcomctl32 -lmingw32 -lwinspool
+CC=gcc
+GCC=g++
+WINFLAGS=-static-libgcc -municode -static-libstdc++
+
+OBJ=bk393.exe
+WINOBJ=win-bk393.exe
+
+default: 
+	@echo
+	@echo "   For OBS command line tool: make bk393"
+	@echo "   For GUI tool: make win-bk393"
+	@echo
+	@echo "   To make a GUI test, export FAKE_SERIAL=1 && make win-bk393"
+	@echo
+
+win-bk393: win-bk393.cpp
+	@echo Build Release $(BV)
+	@echo Build Date $(BD)
+	${GCC} ${CFLAGS} ${WINFLAGS} $(COMPONENTS) win-bk393.cpp ${OFILES} -o ${WINOBJ} ${LIBS} ${WINLIBS}
+
+clean:
+	del /s ${OBJ} ${WINOBJ}
