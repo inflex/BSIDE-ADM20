@@ -22,4 +22,4 @@ bside-adm20-sdl2: bside-adm20-sdl2.cpp
 	${GCC} ${CFLAGS} $(COMPONENTS) bside-adm20-sdl2.cpp $(SDLFLAGS) $(LIBS) ${OFILES} -o ${OBJ} 
 
 clean:
-	del /s ${OBJ} ${WINOBJ}
+	rm ${OBJ} ${WINOBJ}

@@ -21,4 +21,4 @@ bside-adm20-x11: bside-adm20-x11.cpp
 	${GCC} ${CFLAGS} $(COMPONENTS) bside-adm20-x11.cpp ${OFILES} -o ${OBJ} -L/usr/X11R6/lib -lX11 
 
 clean:
-	del /s ${OBJ} ${WINOBJ}
+	rm ${OBJ} ${WINOBJ}
