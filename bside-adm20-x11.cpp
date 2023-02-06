@@ -299,7 +299,7 @@ int main ( int argc, char **argv ) {
 	XGCValues values;
 	unsigned long valuemask = GCCapStyle|GCJoinStyle;
 	XFontStruct *font_info;
-	char *font_name = "-*-terminus-*-r-*-*-32-*";
+	const char *font_name = "-*-terminus-*-r-*-*-32-*";
 	Window win;
 	Display *display;
 	int x11_fd;
@@ -417,8 +417,8 @@ int main ( int argc, char **argv ) {
 	values.cap_style = CapButt;
 	values.join_style = JoinBevel;
 	gc = XCreateGC(display, win, valuemask, &values);
-	if (gc < 0) {
-		fprintf(stderr, "XCreateGC: \n");
+	if (gc == NULL) {
+		fprintf(stderr, "XCreateGC: Some error occurred.\n");
 		exit(1);
 	}
 
