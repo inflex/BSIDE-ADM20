@@ -21,4 +21,4 @@ bside-adm20: bside-adm20-linux.cpp
 	${GCC} ${CFLAGS} $(COMPONENTS) bside-adm20-linux.cpp ${OFILES} -o ${OBJ}
 
 clean:
-	del /s ${OBJ} ${WINOBJ}
+	rm ${OBJ} ${WINOBJ}
